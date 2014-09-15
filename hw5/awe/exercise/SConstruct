@@ -3,7 +3,7 @@
 ##
 
 from rsf.proj import *
-import fdmod
+from rsf.recipes import fdmod
 
 proj = Project()
 proj.Program('AFDM.x',Split('AFDM.c fdutil.c omputil.c'),CCFLAGS='-fopenmp')

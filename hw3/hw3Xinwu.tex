@@ -1,0 +1,201 @@
+%\documentclass{cwpreport2012}
+%\documentclass{article}
+\documentclass[referee]{../../../texCls/mayWithTeaser}
+%\setlength{\paperwidth}{8.5in}
+%\setlength{\paperheight}{11.0in}
+%\usepackage{times}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{wrapfig}
+%\setcounter{totalnumber}{6}
+\usepackage{xspace}
+\usepackage{natbib}
+\graphicspath{{./images/}}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{color}
+\usepackage{wrapfig}
+\usepackage{xspace}
+\usepackage{natbib}
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsbsy}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{appendix}
+\usepackage{bm}
+\usepackage{xfrac}
+\usepackage{placeins}
+\usepackage{listings}
+%\definecolor{lightgrey}{rgb}{0.9,0.9,0.9}
+%\lstset{language=C++}
+%\definecolor{dkgreen}{rgb}{0,0.6,0}
+%\definecolor{gray}{rgb}{0.5,0.5,0.5}
+%\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=1mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\ttfamily\small},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=1
+}
+%\usepackage{lineno}
+%\usepackage{appendix}
+%\linenumbers
+%\makeatletter
+%\renewcommand{\thesubfigure}{\alph{subfigure}}
+%\renewcommand{\@thesubfigure}{(\alph{subfigure})\hskip\subfiglabelskip}
+\usepackage{boxedminipage}
+\setlength{\topmargin}{-0.25in}
+\setlength{\textheight}{8.75in}
+\setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{+.015625in}
+\setlength{\evensidemargin}{+.015625in}
+
+\begin{document}
+\journal{HW3 for GPGN658: Seismic migration}
+%\setcounter{page}{66}
+\title{HW3 for GPGN658: Dispersion relation}
+\author[X.~Wu]
+{Xinming Wu\\
+CWID: 10622240\\
+Center for Wave Phenomena, Colorado School of Mines, Golden, CO 80401, USA}
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Dispersion relation for isotropic media}
+In isotropic media, the constitutive law for stress and strain can be expressed
+as
+\begin{equation}
+  t_{ij}=\lambda e_{kk}\delta_{ij}+2\mu e_{ij}.
+\end{equation}
+According to the equation of motions
+\begin{equation}
+  \rho\frac{\partial^2 u_i}{\partial t^2}=\frac{\partial t_{ij}}{\partial x_j},
+\end{equation}
+we have
+\begin{equation}
+  \rho\frac{\partial^2 u_i}{\partial t^2}
+  =\frac{\partial \lambda e_{kk}\delta_{ij}+2\mu e_{ij}}{\partial x_j}
+  =\lambda\delta_{ij}\frac{\partial e_{kk}}{\partial
+  x_j}+2\mu\frac{e_{ij}}{\partial x_j}.
+  \label{e:iso}
+\end{equation}
+We also have the geometric law below
+\begin{equation}
+  e_{kl}=\frac{1}{2}(\frac{\partial u_k}{\partial x_l}+\frac{\partial
+  u_l}{\partial x_k}).
+  \label{e:geoL}
+\end{equation}
+Substituting equation~\ref{e:geoL} into equation~\ref{e:iso}, and assuming
+$\nabla\lambda\approx 0$, $\nabla\mu\approx 0$, we have
+\begin{equation}
+  \begin{split}
+  \rho\frac{\partial^2 u_i}{\partial t^2}
+  &=\lambda\delta_{ij}
+   \frac{\partial^2 u_k}{\partial x_k\partial x_j}
+   +\mu(
+   \frac{\partial^2 u_i}{\partial x_j\partial x_j}+
+   \frac{\partial^2 u_j}{\partial x_i\partial x_j})\\
+  &=\lambda
+   \frac{\partial^2 u_k}{\partial x_k\partial x_i}
+   +\mu(
+   \frac{\partial^2 u_i}{\partial x_j\partial x_j}+
+   \frac{\partial^2 u_j}{\partial x_i\partial x_j}).
+\end{split}
+\end{equation}
+Since $\frac{\partial^2 u_k}{\partial x_k\partial x_i}$ 
+and $\frac{\partial^2 u_j}{\partial x_i\partial x_j}$ 
+have the same structure, then we can combine them and obtain
+\begin{equation}
+  \rho\frac{\partial^2 u_i}{\partial t^2}=
+  (\lambda+\mu)\frac{\partial^2 u_j}{\partial x_j\partial x_i}
+   +\mu\frac{\partial^2 u_i}{\partial^2 x_j}.
+\end{equation}
+If we assume a planar wave $u_i=A_ie^{i(k_jx_j-\omega t)}$, and substitute it into the
+above equation, we obtain
+\begin{equation}
+  \rho(-i\omega)^2u_i=(\lambda+\mu)[(ik_j)(ik_i)]u_j+\mu[(ik_j)^2]u_i,
+\end{equation}
+which can be further simplified as
+\begin{equation}
+  \rho \omega^2A_i=(\lambda+\mu)k_jk_iA_j+\mu k^2_jA_i.
+\end{equation}
+The equation above is the dispersion relation for isotropic media.
+\section{Dispersion relation for VTI media}
+As discussed in class, we the dispersion relation for general anisotropic media
+as below
+\begin{equation}
+  C_{ijkl}k_jk_lA_k=\rho\omega^2A_i.
+\end{equation}
+If we let $n_j=\frac{k_j}{\omega s}$ and $n_l=\frac{k_l}{\omega s}$, where $s$
+is slowness, then we have
+\begin{equation}
+  C_{ijkl}n_jn_lA_k=\rho v^2A_i.
+  \label{e:dr}
+\end{equation}
+To further simplify the dispersion relation above, we define a $3\times 3$ matrix 
+$\mathbf{G}$ with elements 
+\begin{equation}
+G_{ik}=C_{ijkl}n_jn_l.
+\end{equation}
+Then we obtain the below Christoffel equation from equation~\ref{e:dr}
+\begin{equation}
+  (G_{ik}-\rho v^2\delta_{ik})A_k=0.
+\end{equation}
+In the VTI media, the stiffness matrix is given by
+\begin{equation}
+  \left[\begin{matrix}
+     C_{11} & C_{12} & C_{13} & 0 & 0 & 0\\
+     C_{12} & C_{11} & C_{13} & 0 & 0 & 0\\
+     C_{13} & C_{13} & C_{33} & 0 & 0 & 0\\
+     0 & 0 & 0 & C_{55} & 0 & 0\\
+     0 & 0 & 0 & 0 & C_{55} & 0\\
+     0 & 0 & 0 & 0 & 0 & C_{66}\\
+  \end{matrix}\right],
+\end{equation}
+where $C_{12}=C_{11}-2C_{66}$.
+Then for the $3\times 3$ matrix $\mathbf{G}$, we have
+\begin{equation}
+  \begin{split}
+    &G_{11}= C_{11}n^2_1+C_{66}n^2_2+C_{55}n^2_3\\
+    &G_{22}= C_{66}n^2_1+C_{22}n^2_2+C_{55}n^2_3\\
+    &G_{33}= C_{55}n^2_1+C_{55}n^2_2+C_{33}n^2_3\\
+    &G_{21}=G_{12}= C_{12}n_1n_2+C_{66}n_2n_1=(C_{11}-C_{66})n_1n_2\\
+    &G_{31}=G_{13}= C_{13}n_1n_3+C_{55}n_3n_1=(C_{13}+C_{55})n_1n_3\\
+    &G_{32}=G_{23}= C_{23}n_2n_3+C_{55}n_3n_2=(C_{23}+C_{55})n_2n_3\\
+  \end{split}
+\end{equation}
+Therefore, the dispersion relation for the VTI media can be expressed as
+\begin{equation}
+  \left[\begin{matrix}
+      G_{11}-\rho v^2 & G_{12} & G_{13}\\
+      G_{12} & G_{22}-\rho v^2 & G_{23}\\
+      G_{13} & G_{23} & G_{33}-\rho v^2\\
+  \end{matrix}\right]
+  \left[\begin{matrix}
+      A_1\\
+      A_2\\
+      A_3\\
+  \end{matrix}\right]
+  =
+  \left[\begin{matrix}
+      0\\
+      0\\
+      0\\
+  \end{matrix}\right]
+\end{equation}
+\section*{Acknowledgments}
+For the first part of isotropic media, I discussed with Tong Bai and Vladimir
+Li. Both of them provided me valuable suggestions.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

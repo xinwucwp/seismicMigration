@@ -50,7 +50,7 @@
 <span class="comment">##</span>
 
 <span class="keyword">from</span> <span class="name">rsf</span><span class="op">.</span><span class="name">proj</span> <span class="keyword">import</span> <span class="op">*</span>
-<span class="keyword">import</span> <span class="name">fdmod</span>
+<span class="keyword">from</span> <span class="name">rsf</span><span class="op">.</span><span class="name">recipes</span> <span class="keyword">import</span> <span class="name">fdmod</span>
 
 <span class="name">proj</span> <span class="op">=</span> <span class="name">Project</span><span class="op">(</span><span class="op">)</span>
 <span class="name">proj</span><span class="op">.</span><span class="name">Program</span><span class="op">(</span><span class="string">'AFDM.x'</span><span class="op">,</span><span class="name">Split</span><span class="op">(</span><span class="string">'AFDM.c fdutil.c omputil.c'</span><span class="op">)</span><span class="op">,</span><span class="name">CCFLAGS</span><span class="op">=</span><span class="string">'-fopenmp'</span><span class="op">)</span>
