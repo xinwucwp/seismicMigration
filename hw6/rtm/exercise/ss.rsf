@@ -1,0 +1,43 @@
+1.7-svn	sfmath	hw6/rtm/exercise:	xinwu@xinwu@mines	Mon Sep 15 17:33:07 2014
+
+	o1=0
+	data_format="native_float"
+	esize=4
+	in="/scratch/hw6/rtm/exercise/ss_.rsf@"
+	x1=0
+	d1=1
+	n1=1
+1.7-svn	sfmath	hw6/rtm/exercise:	xinwu@xinwu@mines	Mon Sep 15 17:33:07 2014
+
+	input=0
+	data_format="native_float"
+	esize=4
+	in="/scratch/hw6/rtm/exercise/ss_x.rsf@"
+	x1=1
+1.7-svn	sfcat	hw6/rtm/exercise:	xinwu@xinwu@mines	Mon Sep 15 17:33:07 2014
+
+	n2=2
+	data_format="native_float"
+	esize=4
+	in="stdout"
+	in="stdin"
+
+1.7-svn	sftransp	hw6/rtm/exercise:	xinwu@xinwu@mines	Mon Sep 15 17:33:07 2014
+
+	d2=1
+	n2=1
+	o2=0
+	data_format="native_float"
+	esize=4
+	in="stdout"
+	n1=2
+	in="stdin"
+
+1.7-svn	sfput	hw6/rtm/exercise:	xinwu@xinwu@mines	Mon Sep 15 17:33:07 2014
+
+	in="/scratch/hw6/rtm/exercise/ss.rsf@"
+	label1=
+	data_format="native_float"
+	label2=
+	unit1=
+	unit2=

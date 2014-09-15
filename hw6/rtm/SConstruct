@@ -1,0 +1,163 @@
+from rsf.tex import *
+import glob, os
+
+# ------------------------------------------------------------
+for handout in glob.glob('handout*.tex'):
+    name = os.path.splitext(handout)[0]
+    Paper(name,
+          lclass='cwphandout',
+	  options='10pt,usenames',
+	  use='graphicx,color,listings,amsmath,amssymb,amsbsy,hyperref,framed,algorithmic,algorithm')
+    
+# ------------------------------------------------------------
+for slides in glob.glob('slides*.tex'):
+    slidesname = os.path.splitext(slides)[0]
+    Paper(slidesname,
+          lclass='cwpslides',
+          use='multicol,color,overpic,listings,amsmath,amssymb,amsbsy,framed,algorithmic,algorithm,animate')
+    
+#          options='aspectratio=169',
+
+for notes in glob.glob('notes*.tex'):
+    notesname = os.path.splitext(notes)[0]
+    Paper(notesname,
+          lclass='cwpnotes',
+          options='notesonly',
+          use='multicol,color,overpic,listings,amsmath,amssymb,amsbsy,framed,algorithmic,algorithm,animate')
+
+# ------------------------------------------------------------
+# use ulem for revisions
+for article in glob.glob('article*.tex'):
+    name = os.path.splitext(article)[0]
+    Paper(name,
+          lclass='geophysics',
+          options='manuscript',
+          use='times,natbib,amsmath,graphicx,color,amssymb,amsbsy,lineno,setspace,ulem,algorithmic,algorithm,framed',
+          include=r'''
+          \linenumbers*[1]
+          ''')
+    
+for geo in glob.glob('geo*.tex'):
+    name = os.path.splitext(geo)[0]
+    Paper(name,
+          lclass='geophysics',
+          options='twocolumn,twoside',
+          use='times,natbib,amsmath,graphicx,color,amssymb,amsbsy,lineno,ulem,setspace')
+
+# ------------------------------------------------------------
+for report in glob.glob('report*.tex'):
+    name = os.path.splitext(report)[0]
+    Paper(name,lclass='cwpreport',
+          use='times,natbib,amsmath,graphicx,color,listings,amssymb,amsbsy,lineno,setspace,algorithmic,algorithm,framed',
+          include=r'''
+          \setlength{\paperwidth}{8.5in}
+          \setlength{\paperheight}{11.0in}
+          \setlength{\topmargin}{-0.25in}
+          \setlength{\textheight}{8.75in}
+          \setlength{\textwidth}{6.5in}
+          \setlength{\oddsidemargin}{+.015625in}
+          \setlength{\evensidemargin}{+.015625in}
+          ''')
+    
+for cover in glob.glob('cover*.tex'):
+    name = os.path.splitext(cover)[0]
+    Paper(name,
+          lclass='geophysics',
+          options='12pt',
+          use='')
+    
+# ------------------------------------------------------------
+for letter in glob.glob('letter*.tex'):
+    name = os.path.splitext(letter)[0]
+    Paper(name,
+          lclass='letter',
+          use='times',
+          include=r'''
+          \setlength{\paperwidth}{8.5in}
+          \setlength{\paperheight}{11.0in}
+          \setlength{\topmargin}{-0.25in}
+          \setlength{\textheight}{8.5in}
+          \setlength{\textwidth}{6.0in}
+          \setlength{\oddsidemargin}{+.2in}
+          \setlength{\evensidemargin}{+.2in}
+          ''')
+          
+# ------------------------------------------------------------
+for segabs in glob.glob('segabs*.tex'):
+    name = os.path.splitext(segabs)[0]
+    Paper(name,
+          lclass='segabs',
+          options='notimes',
+          use='natbib,graphicx,color,listings,amsmath,amssymb,amsbsy')
+    
+for eageabs in glob.glob('eageabs*.tex'):
+    name = os.path.splitext(eageabs)[0]
+    Paper(name,
+          lclass='eageabs',
+          options='11pt',
+          use='times,natbib,color,amssymb,amsmath,amsbsy,graphicx,fancyhdr')
+
+for acggpabs in glob.glob('acggpabs*.tex'):
+    name = os.path.splitext(acggpabs)[0]
+    Paper(name,
+          lclass='acggp',
+          options='11pt',
+          use='times,natbib,color,amssymb,amsmath,amsbsy,graphicx,fancyhdr')
+
+# ------------------------------------------------------------
+for cnotes in glob.glob('cnotes*.tex'):
+    name = os.path.splitext(cnotes)[0]
+    Paper(name,
+          lclass='segabs',
+          options='notimes',
+          use='natbib,graphicx,color,listings,amsmath,amssymb,amsbsy')
+
+# ------------------------------------------------------------
+for pept in glob.glob('pept*.tex'):
+    name = os.path.splitext(pept)[0]
+    Paper(name,
+          lclass='cwppept',
+          options='11pt',
+          use='times,natbib,color,amssymb,amsmath,amsbsy,graphicx,fancyhdr,ulem')
+
+for gji in glob.glob('gref*.tex'):
+    name = os.path.splitext(gji)[0]
+    Paper(name,
+          lclass='cwpgji',
+          options='11pt,referee',
+          use='times,natbib,amsmath,graphicx,color,amssymb,amsbsy,lineno,setspace,algorithmic,algorithm')
+
+for gji in glob.glob('gji*.tex'):
+    name = os.path.splitext(gji)[0]
+    Paper(name,
+          lclass='cwpgji',
+          options='11pt',
+          use='times,natbib,amsmath,graphicx,color,amssymb,amsbsy,lineno,setspace,algorithmic,algorithm')
+
+for jasr in glob.glob('jasr*.tex'):
+    name = os.path.splitext(jasr)[0]
+    Paper(name,
+          lclass='cwpels',
+          options='review,12pt,authoryear',
+          use='graphicx,color,listings,amsmath,amssymb,amsbsy,lineno,framed,algorithmic,algorithm')
+
+#          options='review,12pt,authoryear'
+#          options='preprint,review,12pt,authoryear',
+#          options='preprint,review,12pt',
+#          options='final,authoryear,5pt',
+# ------------------------------------------------------------
+
+# ------------------------------------------------------------
+#for paper in glob.glob('paper*.tex'):
+#    name = os.path.splitext(paper)[0]
+#    Paper(name,
+#          lclass='cwparticle',
+#          options='11pt',
+#          use='times,mathptm,natbib,color,amssymb,mathrsfs,amsbsy,lineno,ulem,multicol,framed')
+    
+#End(use='natbib,color,amssymb,amsmath,amsbsy')
+#End(lclass='cwparticle',
+#          options='11pt',
+#          use='times,mathptm,natbib,color,amssymb,mathrsfs,amsbsy,lineno,ulem,multicol,framed')
+
+End()
