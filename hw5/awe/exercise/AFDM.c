@@ -178,32 +178,32 @@ int main(int argc, char* argv[])
 
     /* setup output wavefield header */
     if(snap) {
-	if(!sf_getint  ("nqz",&nqz)) nqz=sf_n(az);
-	if(!sf_getint  ("nqx",&nqx)) nqx=sf_n(ax);
+	    if(!sf_getint  ("nqz",&nqz)) nqz=sf_n(az);
+	    if(!sf_getint  ("nqx",&nqx)) nqx=sf_n(ax);
 
-	if(!sf_getfloat("oqz",&oqz)) oqz=sf_o(az);
-	if(!sf_getfloat("oqx",&oqx)) oqx=sf_o(ax);
+	    if(!sf_getfloat("oqz",&oqz)) oqz=sf_o(az);
+	    if(!sf_getfloat("oqx",&oqx)) oqx=sf_o(ax);
 
-	dqz=sf_d(az);
-	dqx=sf_d(ax);
+	    dqz=sf_d(az);
+	    dqx=sf_d(ax);
 
-	acz = sf_maxa(nqz,oqz,dqz);
-	acx = sf_maxa(nqx,oqx,dqx);
+	    acz = sf_maxa(nqz,oqz,dqz);
+	    acx = sf_maxa(nqx,oqx,dqx);
 	/* check if the imaging window fits in the wavefield domain */
 
-	uc=sf_floatalloc2(sf_n(acz),sf_n(acx));
+	    uc=sf_floatalloc2(sf_n(acz),sf_n(acx));
 
-	ntsnap=0;
-	for(it=0; it<nt; it++) {
-	    if(it%jsnap==0) ntsnap++;
-	}
-	sf_setn(at,  ntsnap);
-	sf_setd(at,dt*jsnap);
-	if(verb) sf_raxa(at);
+	    ntsnap=0;
+      for(it=0; it<nt; it++) {
+	      if(it%jsnap==0) ntsnap++;
+	    }
+	    sf_setn(at,  ntsnap);
+	    sf_setd(at,dt*jsnap);
+	    if(verb) sf_raxa(at);
 
-	sf_oaxa(Fwfl,acz,1);
-	sf_oaxa(Fwfl,acx,2);
-	sf_oaxa(Fwfl,at, 3);
+	    sf_oaxa(Fwfl,acz,1);
+	    sf_oaxa(Fwfl,acx,2);
+	    sf_oaxa(Fwfl,at, 3);
     }
 
     if(expl) ww = sf_floatalloc( 1);
@@ -241,9 +241,9 @@ int main(int argc, char* argv[])
 
     /* input density */
     if (NULL != Fden) {
-	sf_floatread(tt[0],nz*nx,Fden);     
+	    sf_floatread(tt[0],nz*nx,Fden);     
     } else {
-	for (ix=0; ix< nz*nx; ix++) tt[0][ix] = 1.0f;
+	    for (ix=0; ix< nz*nx; ix++) tt[0][ix] = 1.0f;
     }
     expand(tt,ro ,fdm);
 
@@ -253,16 +253,16 @@ int main(int argc, char* argv[])
     sf_floatread(tt[0],nz*nx,Fvel );    expand(tt,vp,fdm);
     /* precompute vp^2 * dt^2 */
     for    (ix=0; ix<fdm->nxpad; ix++) {
-	for(iz=0; iz<fdm->nzpad; iz++) {
-	    vt[ix][iz] = vp[ix][iz] * vp[ix][iz] * dt*dt;
-	}
+	    for(iz=0; iz<fdm->nzpad; iz++) {
+	      vt[ix][iz] = vp[ix][iz] * vp[ix][iz] * dt*dt;
+	    }
     }
     if(fsrf) { /* free surface */
-	for    (ix=0; ix<fdm->nxpad; ix++) {
-	    for(iz=0; iz<fdm->nb; iz++) {
-		vt[ix][iz]=0;
+	    for    (ix=0; ix<fdm->nxpad; ix++) {
+	      for(iz=0; iz<fdm->nb; iz++) {
+		      vt[ix][iz]=0;
+	      }
 	    }
-	}
     }
 
     free(*tt); free(tt);    
@@ -276,20 +276,20 @@ int main(int argc, char* argv[])
     ua=sf_floatalloc2(fdm->nzpad,fdm->nxpad);
 
     for    (ix=0; ix<fdm->nxpad; ix++) {
-	for(iz=0; iz<fdm->nzpad; iz++) {
-	    um[ix][iz]=0;
-	    uo[ix][iz]=0;
-	    up[ix][iz]=0;
-	    ua[ix][iz]=0;
-	}
+	    for(iz=0; iz<fdm->nzpad; iz++) {
+	      um[ix][iz]=0;
+	      uo[ix][iz]=0;
+	      up[ix][iz]=0;
+	      ua[ix][iz]=0;
+	    }
     }
 
     /*------------------------------------------------------------*/
     if(dabc) {
 	/* one-way abc setup */
-	abc = abcone2d_make(NOP,dt,vp,fsrf,fdm);
+	    abc = abcone2d_make(NOP,dt,vp,fsrf,fdm);
 	/* sponge abc setup */
-	spo = sponge_make(fdm->nb);
+	    spo = sponge_make(fdm->nb);
     }
 
     /*------------------------------------------------------------*/
@@ -299,7 +299,7 @@ int main(int argc, char* argv[])
     /*------------------------------------------------------------*/
     if(verb) fprintf(stderr,"\n");
     for (it=0; it<nt; it++) {
-	if(verb) fprintf(stderr,"\b\b\b\b\b%d",it);
+	  if(verb) fprintf(stderr,"\b\b\b\b\b%d",it);
 
 #ifdef _OPENMP
 #pragma omp parallel for				\
@@ -311,7 +311,7 @@ int main(int argc, char* argv[])
 	    for(iz=NOP; iz<fdm->nzpad-NOP; iz++) {
 		
 		/* 4th order Laplacian operator */
-		ua[ix][iz] = 
+	    ua[ix][iz] = 
 		    co * uo[ix  ][iz  ] + 
 		    cax*(uo[ix-1][iz  ] + uo[ix+1][iz  ]) +
 		    cbx*(uo[ix-2][iz  ] + uo[ix+2][iz  ]) +
@@ -350,11 +350,11 @@ int main(int argc, char* argv[])
 	up=ut;
 	
 	if(dabc) {
-	    /* one-way abc apply */
-	    abcone2d_apply(uo,um,NOP,abc,fdm);
-	    sponge2d_apply(um,spo,fdm);
-	    sponge2d_apply(uo,spo,fdm);
-	    sponge2d_apply(up,spo,fdm);
+	  /* one-way abc apply */
+	  abcone2d_apply(uo,um,NOP,abc,fdm);
+	  sponge2d_apply(um,spo,fdm);
+	  sponge2d_apply(uo,spo,fdm);
+	  sponge2d_apply(up,spo,fdm);
 	}
 
 	/* extract data */
