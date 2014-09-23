@@ -1,0 +1,178 @@
+
+     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+     <html>
+     <head>
+     <title>exercise/SConstruct</title>
+     <style type="text/css">
+     div.progs {
+     background-color: #DCE3C4;
+     border: thin solid black;
+     padding: 1em;
+     margin-left: 2em;
+     margin-right: 2em; }
+     div.dsets {
+     background-color: #E3C4DC;
+     border: thin solid black;
+     padding: 1em;
+     margin-left: 2em;
+     margin-right: 2em; }
+     div.scons {
+     background-color: #FFF8ED;
+     border: thin solid black;
+     padding: 1em;
+     margin-left: 2em;
+     margin-right: 2em; }
+     .name { color: #000000; }
+.number { color: #0080C0; }
+.string { color: #004080; }
+.keyword { color: #C00000; }
+.flow { color: #0000C0; }
+.text { color: #000000; }
+.fetch { color: #0000C0; }
+.op { color: #0000C0; }
+.error { color: #FF8080; }
+.comment { color: #008000; }
+.plot { color: #0000C0; }
+.result { color: #C00000; }
+</style>
+     </head>
+     <body>
+     <div>
+     <a href="paper_html/paper.html"><img width="32" height="32"
+     align="bottom" border="0" alt="up" src="paper_html/icons/up.png"></a>
+     <a href="paper.pdf"><img src="paper_html/icons/pdf.png" alt="[pdf]"
+     width="32" height="32" border="0"></a>
+     </div>
+     <div class="scons">
+     <table><tr><td>
+     <pre><font face="Lucida,Courier New"><span class="comment"># GPGN 658 - reverse-time migration</span>
+<span class="keyword">from</span> <span class="name">rsf</span><span class="op">.</span><span class="name">proj</span> <span class="keyword">import</span> <span class="op">*</span>
+<span class="keyword">import</span> <span class="name">fdm</span>
+<span class="comment"># ------------------------------------------------------------</span>
+<span class="name">par</span> <span class="op">=</span> <span class="name">dict</span><span class="op">(</span>
+    <span class="name">nt</span><span class="op">=</span><span class="number">1500</span><span class="op">,</span> <span class="name">ot</span><span class="op">=</span><span class="number">0</span><span class="op">,</span> <span class="name">dt</span><span class="op">=</span><span class="number">0.001</span><span class="op">,</span> <span class="name">lt</span><span class="op">=</span><span class="string">'t'</span><span class="op">,</span> <span class="name">ut</span><span class="op">=</span><span class="string">'s'</span><span class="op">,</span>
+    <span class="name">nx</span><span class="op">=</span><span class="number">601</span><span class="op">,</span>  <span class="name">ox</span><span class="op">=</span><span class="number">0</span><span class="op">,</span> <span class="name">dx</span><span class="op">=</span><span class="number">0.005</span><span class="op">,</span> <span class="name">lx</span><span class="op">=</span><span class="string">'x'</span><span class="op">,</span> <span class="name">ux</span><span class="op">=</span><span class="string">'km'</span><span class="op">,</span>
+    <span class="name">nz</span><span class="op">=</span><span class="number">201</span><span class="op">,</span>  <span class="name">oz</span><span class="op">=</span><span class="number">0</span><span class="op">,</span> <span class="name">dz</span><span class="op">=</span><span class="number">0.005</span><span class="op">,</span> <span class="name">lz</span><span class="op">=</span><span class="string">'z'</span><span class="op">,</span> <span class="name">uz</span><span class="op">=</span><span class="string">'km'</span><span class="op">,</span>
+    <span class="name">kt</span><span class="op">=</span><span class="number">50</span><span class="op">,</span><span class="name">nb</span><span class="op">=</span><span class="number">100</span><span class="op">,</span><span class="name">jsnap</span><span class="op">=</span><span class="number">50</span><span class="op">,</span><span class="name">jdata</span><span class="op">=</span><span class="number">1</span><span class="op">,</span><span class="name">frq</span><span class="op">=</span><span class="number">35</span>
+    <span class="op">)</span>
+<span class="name">fdm</span><span class="op">.</span><span class="name">param</span><span class="op">(</span><span class="name">par</span><span class="op">)</span>
+
+<span class="name">par</span><span class="op">[</span><span class="string">'xk'</span><span class="op">]</span><span class="op">=</span><span class="number">50</span>
+<span class="name">par</span><span class="op">[</span><span class="string">'xl'</span><span class="op">]</span><span class="op">=</span><span class="name">par</span><span class="op">[</span><span class="string">'nx'</span><span class="op">]</span><span class="op">-</span><span class="number">50</span>
+
+<span class="name">par</span><span class="op">[</span><span class="string">'xsou'</span><span class="op">]</span><span class="op">=</span><span class="name">par</span><span class="op">[</span><span class="string">'ox'</span><span class="op">]</span><span class="op">+</span><span class="name">par</span><span class="op">[</span><span class="string">'nx'</span><span class="op">]</span><span class="op">/</span><span class="number">2</span><span class="op">*</span><span class="name">par</span><span class="op">[</span><span class="string">'dx'</span><span class="op">]</span>
+<span class="name">par</span><span class="op">[</span><span class="string">'zsou'</span><span class="op">]</span><span class="op">=</span><span class="name">par</span><span class="op">[</span><span class="string">'oz'</span><span class="op">]</span>
+
+<span class="comment"># ------------------------------------------------------------</span>
+<span class="comment"># wavelet</span>
+<span class="name">fdm</span><span class="op">.</span><span class="name">wavelet</span><span class="op">(</span><span class="string">'wav_'</span><span class="op">,</span><span class="name">par</span><span class="op">[</span><span class="string">'frq'</span><span class="op">]</span><span class="op">,</span><span class="name">par</span><span class="op">)</span>
+<span class="flow">Flow</span><span class="op">(</span>  <span class="string">'wav'</span><span class="op">,</span> <span class="string">'wav_'</span><span class="op">,</span><span class="string">'transp'</span><span class="op">)</span>
+<span class="result">Result</span><span class="op">(</span><span class="string">'wav'</span><span class="op">,</span><span class="string">'window n2=500 |'</span> <span class="op">+</span> <span class="name">fdm</span><span class="op">.</span><span class="name">waveplot</span><span class="op">(</span><span class="string">''</span><span class="op">,</span><span class="name">par</span><span class="op">)</span><span class="op">)</span>
+
+<span class="comment"># ------------------------------------------------------------</span>
+<span class="comment"># sources coordinates</span>
+<span class="name">fdm</span><span class="op">.</span><span class="name">point</span><span class="op">(</span><span class="string">'ss'</span><span class="op">,</span><span class="name">par</span><span class="op">[</span><span class="string">'xsou'</span><span class="op">]</span><span class="op">,</span><span class="name">par</span><span class="op">[</span><span class="string">'zsou'</span><span class="op">]</span><span class="op">,</span><span class="name">par</span><span class="op">)</span>
+<span class="plot">Plot</span><span class="op">(</span><span class="string">'ss'</span><span class="op">,</span><span class="name">fdm</span><span class="op">.</span><span class="name">ssplot</span><span class="op">(</span><span class="string">''</span><span class="op">,</span><span class="name">par</span><span class="op">)</span><span class="op">)</span>
+
+<span class="comment"># receivers coordinates</span>
+<span class="name">fdm</span><span class="op">.</span><span class="name">horizontal</span><span class="op">(</span><span class="string">'rr'</span><span class="op">,</span><span class="number">0</span><span class="op">,</span><span class="name">par</span><span class="op">)</span>
+<span class="plot">Plot</span><span class="op">(</span><span class="string">'rr'</span><span class="op">,</span><span class="name">fdm</span><span class="op">.</span><span class="name">rrplot</span><span class="op">(</span><span class="string">''</span><span class="op">,</span><span class="name">par</span><span class="op">)</span><span class="op">)</span>
+
+<span class="comment"># ------------------------------------------------------------</span>
+<span class="comment"># velocity</span>
+<span class="flow">Flow</span><span class="op">(</span><span class="string">'vo'</span><span class="op">,</span><span class="name">None</span><span class="op">,</span>
+     <span class="string">'''
+     math output="2.0+0.25*x1"
+     n1=%(nz)d o1=%(oz)g d1=%(dz)g
+     n2=%(nx)d o2=%(ox)g d2=%(dx)g
+     '''</span> <span class="op">%</span> <span class="name">par</span><span class="op">)</span>
+
+<span class="plot">Plot</span><span class="op">(</span>  <span class="string">'vo'</span><span class="op">,</span><span class="name">fdm</span><span class="op">.</span><span class="name">cgrey</span><span class="op">(</span><span class="string">'allpos=y bias=2.0 pclip=100'</span><span class="op">,</span><span class="name">par</span><span class="op">)</span><span class="op">)</span>
+<span class="result">Result</span><span class="op">(</span><span class="string">'vo'</span><span class="op">,</span><span class="op">[</span><span class="string">'vo'</span><span class="op">,</span><span class="string">'ss'</span><span class="op">,</span><span class="string">'rr'</span><span class="op">]</span><span class="op">,</span><span class="string">'Overlay'</span><span class="op">)</span>
+
+<span class="comment"># ------------------------------------------------------------</span>
+<span class="comment"># density</span>
+<span class="flow">Flow</span><span class="op">(</span><span class="string">'ra'</span><span class="op">,</span><span class="name">None</span><span class="op">,</span>
+     <span class="string">'''
+     spike nsp=2 mag=+0.5,-0.5
+     n1=%(nz)d o1=%(oz)g d1=%(dz)g k1=101,151 l1=%(nz)d,%(nz)d
+     n2=%(nx)d o2=%(ox)g d2=%(dx)g k2=1,201   l2=200,%(nx)d |
+     add add=2
+     '''</span> <span class="op">%</span> <span class="name">par</span><span class="op">)</span>
+<span class="plot">Plot</span><span class="op">(</span>  <span class="string">'ra'</span><span class="op">,</span><span class="name">fdm</span><span class="op">.</span><span class="name">cgrey</span><span class="op">(</span><span class="string">'allpos=y bias=1.5 pclip=100'</span><span class="op">,</span><span class="name">par</span><span class="op">)</span><span class="op">)</span>
+<span class="result">Result</span><span class="op">(</span><span class="string">'ra'</span><span class="op">,</span><span class="op">[</span><span class="string">'ra'</span><span class="op">,</span><span class="string">'ss'</span><span class="op">,</span><span class="string">'rr'</span><span class="op">]</span><span class="op">,</span><span class="string">'Overlay'</span><span class="op">)</span>
+
+<span class="flow">Flow</span><span class="op">(</span><span class="string">'rb'</span><span class="op">,</span><span class="string">'ra'</span><span class="op">,</span><span class="string">'math output=1'</span><span class="op">)</span>
+
+<span class="comment"># ------------------------------------------------------------</span>
+<span class="comment"># edge taper</span>
+<span class="flow">Flow</span><span class="op">(</span><span class="string">'taper'</span><span class="op">,</span><span class="name">None</span><span class="op">,</span>
+     <span class="string">'''
+     spike nsp=1 mag=1
+     n1=%(nx)d d1=%(dx)g o1=%(ox)g k1=%(xk)d l1=%(xl)d
+     n2=%(nt)d d2=%(dt)g o2=%(ot)g |
+     smooth rect1=50
+     '''</span> <span class="op">%</span> <span class="name">par</span><span class="op">)</span>
+<span class="result">Result</span><span class="op">(</span><span class="string">'taper'</span><span class="op">,</span><span class="string">'transp |'</span><span class="op">+</span><span class="name">fdm</span><span class="op">.</span><span class="name">dgrey</span><span class="op">(</span><span class="string">'pclip=99'</span><span class="op">,</span><span class="name">par</span><span class="op">)</span><span class="op">)</span>
+
+<span class="comment"># ------------------------------------------------------------</span>
+<span class="comment"># finite-differences modeling</span>
+<span class="name">fdm</span><span class="op">.</span><span class="name">awefd</span><span class="op">(</span><span class="string">'dd'</span><span class="op">,</span><span class="string">'ww'</span><span class="op">,</span><span class="string">'wav'</span><span class="op">,</span><span class="string">'vo'</span><span class="op">,</span><span class="string">'ra'</span><span class="op">,</span><span class="string">'ss'</span><span class="op">,</span><span class="string">'rr'</span><span class="op">,</span><span class="string">'jsnap=1 fsrf=n'</span><span class="op">,</span><span class="name">par</span><span class="op">)</span>
+<span class="name">fdm</span><span class="op">.</span><span class="name">awefd</span><span class="op">(</span><span class="string">'do'</span><span class="op">,</span><span class="string">'wo'</span><span class="op">,</span><span class="string">'wav'</span><span class="op">,</span><span class="string">'vo'</span><span class="op">,</span><span class="string">'rb'</span><span class="op">,</span><span class="string">'ss'</span><span class="op">,</span><span class="string">'rr'</span><span class="op">,</span><span class="string">'jsnap=1 fsrf=n'</span><span class="op">,</span><span class="name">par</span><span class="op">)</span>
+
+<span class="result">Result</span><span class="op">(</span><span class="string">'ww'</span><span class="op">,</span><span class="string">'window j3=%(jsnap)d |'</span><span class="op">%</span><span class="name">par</span> <span class="op">+</span> <span class="name">fdm</span><span class="op">.</span><span class="name">wgrey</span><span class="op">(</span><span class="string">'pclip=99.9'</span><span class="op">,</span><span class="name">par</span><span class="op">)</span><span class="op">)</span>
+<span class="result">Result</span><span class="op">(</span><span class="string">'wo'</span><span class="op">,</span><span class="string">'window j3=%(jsnap)d |'</span><span class="op">%</span><span class="name">par</span> <span class="op">+</span> <span class="name">fdm</span><span class="op">.</span><span class="name">wgrey</span><span class="op">(</span><span class="string">'pclip=99.9'</span><span class="op">,</span><span class="name">par</span><span class="op">)</span><span class="op">)</span>
+
+<span class="comment"># data w/  direct arrivals</span>
+<span class="flow">Flow</span><span class="op">(</span>  <span class="string">'dr0'</span><span class="op">,</span><span class="string">'dd taper'</span><span class="op">,</span>
+       <span class="string">'add mode=p ${SOURCES[1]}'</span><span class="op">)</span>
+
+<span class="comment"># data w/o direct arrivals</span>
+<span class="flow">Flow</span><span class="op">(</span>  <span class="string">'dr1'</span><span class="op">,</span><span class="string">'dd do taper'</span><span class="op">,</span>
+       <span class="string">'math r=${SOURCES[0]} d=${SOURCES[1]} t=${SOURCES[2]} output="(r-d)*t"'</span><span class="op">)</span>
+
+<span class="keyword">for</span> <span class="name">j</span> <span class="keyword">in</span> <span class="name">range</span><span class="op">(</span><span class="number">2</span><span class="op">)</span><span class="op">:</span>
+    <span class="name">dtag</span><span class="op">=</span><span class="string">"%d"</span><span class="op">%</span><span class="name">j</span>
+    <span class="result">Result</span><span class="op">(</span><span class="string">'dr'</span><span class="op">+</span><span class="name">dtag</span><span class="op">,</span><span class="string">'transp |'</span> <span class="op">+</span> <span class="name">fdm</span><span class="op">.</span><span class="name">dgrey</span><span class="op">(</span><span class="string">'pclip=99.9'</span><span class="op">,</span><span class="name">par</span><span class="op">)</span><span class="op">)</span>
+
+<span class="comment"># ------------------------------------------------------------</span>
+<span class="comment"># Reverse-time migration</span>
+<span class="name">imags</span> <span class="op">=</span> <span class="op">[</span><span class="string">'imag0'</span><span class="op">,</span><span class="string">'imag1'</span><span class="op">]</span>
+<span class="name">odats</span> <span class="op">=</span> <span class="op">[</span><span class="string">'odat0'</span><span class="op">,</span><span class="string">'odat1'</span><span class="op">]</span>
+<span class="name">tdats</span> <span class="op">=</span> <span class="op">[</span><span class="string">'tdat0'</span><span class="op">,</span><span class="string">'tdat1'</span><span class="op">]</span>
+<span class="name">twfls</span> <span class="op">=</span> <span class="op">[</span><span class="string">'twfl0'</span><span class="op">,</span><span class="string">'twfl1'</span><span class="op">]</span>
+<span class="name">rwfls</span> <span class="op">=</span> <span class="op">[</span><span class="string">'rwfl0'</span><span class="op">,</span><span class="string">'rwfl1'</span><span class="op">]</span>
+<span class="name">velo</span><span class="op">,</span><span class="name">sou</span><span class="op">,</span><span class="name">rec</span><span class="op">,</span><span class="name">custom</span><span class="op">=</span><span class="string">'vo'</span><span class="op">,</span><span class="string">'rr'</span><span class="op">,</span><span class="string">'rr'</span><span class="op">,</span><span class="string">'jsnap=1 fsrf=n'</span>
+<span class="name">dens</span><span class="op">,</span><span class="name">swfls</span><span class="op">,</span><span class="name">idats</span> <span class="op">=</span> <span class="op">[</span><span class="string">'ra'</span><span class="op">,</span><span class="string">'rb'</span><span class="op">]</span><span class="op">,</span><span class="op">[</span><span class="string">'ww'</span><span class="op">,</span><span class="string">'wo'</span><span class="op">]</span><span class="op">,</span><span class="op">[</span><span class="string">'dr0'</span><span class="op">,</span><span class="string">'dr1'</span><span class="op">]</span>
+<span class="name">xcor2dPar</span> <span class="op">=</span> <span class="string">'xcor2d uu=${SOURCES[1]} axis=3 verb=y nbuf=100'</span>
+<span class="keyword">for</span> <span class="name">den</span> <span class="keyword">in</span> <span class="name">dens</span><span class="op">:</span>
+  <span class="keyword">for</span> <span class="name">i</span> <span class="keyword">in</span> <span class="name">range</span><span class="op">(</span><span class="number">2</span><span class="op">)</span><span class="op">:</span>
+    <span class="flow">Flow</span><span class="op">(</span><span class="name">odats</span><span class="op">[</span><span class="name">i</span><span class="op">]</span><span class="op">+</span><span class="name">den</span><span class="op">,</span><span class="name">idats</span><span class="op">[</span><span class="name">i</span><span class="op">]</span><span class="op">,</span><span class="string">'reverse which=2 opt=i verb=y'</span><span class="op">)</span>
+    <span class="name">fdm</span><span class="op">.</span><span class="name">awefd</span><span class="op">(</span><span class="name">tdats</span><span class="op">[</span><span class="name">i</span><span class="op">]</span><span class="op">+</span><span class="name">den</span><span class="op">,</span><span class="name">twfls</span><span class="op">[</span><span class="name">i</span><span class="op">]</span><span class="op">+</span><span class="name">den</span><span class="op">,</span><span class="name">odats</span><span class="op">[</span><span class="name">i</span><span class="op">]</span><span class="op">+</span><span class="name">den</span><span class="op">,</span><span class="name">velo</span><span class="op">,</span><span class="name">den</span><span class="op">,</span><span class="name">sou</span><span class="op">,</span><span class="name">rec</span><span class="op">,</span><span class="name">custom</span><span class="op">,</span><span class="name">par</span><span class="op">)</span>
+    <span class="flow">Flow</span><span class="op">(</span><span class="name">rwfls</span><span class="op">[</span><span class="name">i</span><span class="op">]</span><span class="op">+</span><span class="name">den</span><span class="op">,</span><span class="name">twfls</span><span class="op">[</span><span class="name">i</span><span class="op">]</span><span class="op">+</span><span class="name">den</span><span class="op">,</span><span class="string">'reverse which=4 opt=i verb=y'</span><span class="op">)</span>
+    <span class="comment"># conventional (cross-correlation zero-lag) imaging condition</span>
+    <span class="flow">Flow</span><span class="op">(</span><span class="name">imags</span><span class="op">[</span><span class="name">i</span><span class="op">]</span><span class="op">+</span><span class="name">den</span><span class="op">,</span><span class="name">rwfls</span><span class="op">[</span><span class="name">i</span><span class="op">]</span><span class="op">+</span><span class="name">den</span><span class="op">+</span><span class="string">' '</span><span class="op">+</span><span class="name">swfls</span><span class="op">[</span><span class="name">i</span><span class="op">]</span><span class="op">,</span><span class="name">xcor2dPar</span><span class="op">)</span>
+    <span class="result">Result</span><span class="op">(</span><span class="name">imags</span><span class="op">[</span><span class="name">i</span><span class="op">]</span><span class="op">+</span><span class="name">den</span><span class="op">,</span><span class="string">'window j3=%(jsnap)d |'</span><span class="op">%</span><span class="name">par</span> <span class="op">+</span> <span class="name">fdm</span><span class="op">.</span><span class="name">wgrey</span><span class="op">(</span><span class="string">'pclip=99.9'</span><span class="op">,</span><span class="name">par</span><span class="op">)</span><span class="op">)</span>
+<span class="comment"># ------------------------------------------------------------</span>
+<span class="name">End</span><span class="op">(</span><span class="op">)</span><span class="text"></span></font></pre></table></div><p><div class="progs"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="http://www.ahay.org/RSF/sfspike.html">sfspike</a><br>
+<a href="http://www.ahay.org/RSF/sfpad.html">sfpad</a><br>
+<a href="http://www.ahay.org/RSF/sfricker1.html">sfricker1</a><br>
+<a href="http://www.ahay.org/RSF/sfwindow.html">sfwindow</a><br>
+<a href="http://www.ahay.org/RSF/sfscale.html">sfscale</a><br>
+</td><td width="25%" valign=top><a href="http://www.ahay.org/RSF/sfput.html">sfput</a><br>
+<a href="http://www.ahay.org/RSF/sftransp.html">sftransp</a><br>
+<a href="http://www.ahay.org/RSF/sfgraph.html">sfgraph</a><br>
+<a href="http://www.ahay.org/RSF/sfmath.html">sfmath</a><br>
+<a href="http://www.ahay.org/RSF/sfcat.html">sfcat</a><br>
+</td><td width="25%" valign=top><a href="http://www.ahay.org/RSF/sfdd.html">sfdd</a><br>
+<a href="http://www.ahay.org/RSF/sfgrey.html">sfgrey</a><br>
+<a href="http://www.ahay.org/RSF/sfadd.html">sfadd</a><br>
+<a href="http://www.ahay.org/RSF/sfsmooth.html">sfsmooth</a><br>
+<a href="http://www.ahay.org/RSF/sfawefd2d.html">sfawefd2d</a><br>
+</td><td width="25%" valign=top><a href="http://www.ahay.org/RSF/sfreverse.html">sfreverse</a><br>
+<a href="http://www.ahay.org/RSF/sfxcor2d.html">sfxcor2d</a><br>
+</td></tr></table>
+     </div>
+     </body>
+     </html>
+     
