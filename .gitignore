@@ -3,5 +3,5 @@ slides/*
 # Ignore all files below
 *.tar
 hw5/awe/exercise/*.rsf
-hw5/*.vpl
-hw5/*.eps
+hw5/awe/exercise/*.vpl
+hw5/awe/exercise/*.eps
