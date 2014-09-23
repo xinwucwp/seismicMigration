@@ -81,6 +81,7 @@ int main(int argc, char* argv[])
 
     float **tt=NULL;
     float **ro=NULL;           /* density */
+    float **dr=NULL;           /* reciprocal density */
     float **vp=NULL;           /* velocity */
     float **vt=NULL;           /* temporary vp*vp * dt*dt */
 
@@ -236,6 +237,7 @@ int main(int argc, char* argv[])
     tt = sf_floatalloc2(nz,nx); 
 
     ro  =sf_floatalloc2(fdm->nzpad,fdm->nxpad);
+    dr  =sf_floatalloc2(fdm->nzpad,fdm->nxpad);
     vp  =sf_floatalloc2(fdm->nzpad,fdm->nxpad); 
     vt  =sf_floatalloc2(fdm->nzpad,fdm->nxpad); 
 
@@ -247,7 +249,7 @@ int main(int argc, char* argv[])
     }
     expand(tt,ro ,fdm);
 
-    free(*ro); free(ro);
+    //free(*ro); free(ro);
 
     /* input velocity */
     sf_floatread(tt[0],nz*nx,Fvel );    expand(tt,vp,fdm);
@@ -305,18 +307,22 @@ int main(int argc, char* argv[])
 #pragma omp parallel for				\
     schedule(dynamic,fdm->ompchunk)			\
     private(ix,iz)					\
-    shared(fdm,ua,uo,co,cax,caz,cbx,cbz,idx,idz)
+    shared(fdm,ua,uo,ro,co,cax,caz,cbx,cbz,idx,idz)
 #endif
+  float cox = 0.25f*idx*idx; //coefficient for the density term
+  float coz = 0.25f*idz*idz; //coefficient for the density term
 	for    (ix=NOP; ix<fdm->nxpad-NOP; ix++) {
 	    for(iz=NOP; iz<fdm->nzpad-NOP; iz++) {
 		
-		/* 4th order Laplacian operator */
+		// 4th order Laplacian operator
 	    ua[ix][iz] = 
 		    co * uo[ix  ][iz  ] + 
 		    cax*(uo[ix-1][iz  ] + uo[ix+1][iz  ]) +
 		    cbx*(uo[ix-2][iz  ] + uo[ix+2][iz  ]) +
 		    caz*(uo[ix  ][iz-1] + uo[ix  ][iz+1]) +
-		    cbz*(uo[ix  ][iz-2] + uo[ix  ][iz+2]);
+		    cbz*(uo[ix  ][iz-2] + uo[ix  ][iz+2]) -
+       (cox*(ro[ix+1][iz  ]-ro[ix-1][iz  ])*(uo[ix+1][iz  ]-uo[ix-1][iz  ])+
+        coz*(ro[ix  ][iz+1]-ro[ix  ][iz-1])*(uo[ix  ][iz+1]-uo[ix  ][iz-1]))/ro[ix][iz];
 	    }
 	}   
 

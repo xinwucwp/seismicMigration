@@ -1,4 +1,4 @@
-\author{Carl Friedrich Gauss}
+\author{Xinming Wu}
 \title{GPGN658: Seismic migration}{RTM}
 
 % ------------------------------------------------------------
@@ -54,6 +54,11 @@ detail how your imaging procedures work.
   use the constant density \texttt{rb.rsf} for imaging. Include those
   two images in this document. Are the images different from
   each-other? How? Why?
+%\sideplot{rb}{width=\textwidth}{The constant density \texttt{rb.rsf}.}
+\sideplot{imag0rb}{width=\textwidth}{Image migrated with the recorded data in
+Figure~\ref{fig:dr0} and the constant density \texttt{rb.rsf}.}
+\sideplot{imag1rb}{width=\textwidth}{Image migrated with the recorded data in
+Figure~\ref{fig:dr1} and the constant density \texttt{rb.rsf}.}
 
 \item Use your imaging procedure to generate images based on recorded
   data in Figures~\ref{fig:dr0} and \ref{fig:dr1}. For this exercise,
@@ -61,6 +66,12 @@ detail how your imaging procedures work.
   two images in this document. Are the images different from
   each-other? How? Why? How do your images compare with the ones from
   the preceding exercise?
+%\sideplot{ra}{width=\textwidth}{The variable density \texttt{ra.rsf}.}
+\sideplot{imag0ra}{width=\textwidth}{Image migrated with the recorded data in
+Figure~\ref{fig:dr0} and the variable density \texttt{ra.rsf}.}
+\sideplot{imag1ra}{width=\textwidth}{Image migrated with the recorded data in
+Figure~\ref{fig:dr1} and the variable density \texttt{ra.rsf}.}
+
 \end{enumerate}
 
 % ------------------------------------------------------------
@@ -73,7 +84,23 @@ PDF viewer and bring it to class.
 \newpage
 \section{SConstruct}
 \tiny
-\lstinputlisting{exercise/SConstruct}
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{comments}{RGB}{0,0,113}
+\definecolor{red}{RGB}{160,0,0}
+\definecolor{green}{RGB}{0,150,0}
+\definecolor{gray}{RGB}{168,168,168}
+\lstset{numbers=left,language=Python, 
+        basicstyle=\ttfamily\small, 
+        keywordstyle=\color{keywords},
+        commentstyle=\color{comments},
+        stringstyle=\color{red},
+        showstringspaces=false,
+        aboveskip=0pt,belowskip=0pt,
+        identifierstyle=\color{green}}
+\lstinputlisting[firstline=1,lastline=90]{exercise/SConstruct}
+\lstinputlisting[backgroundcolor=\color{gray},firstline=91,lastline=109,
+firstnumber=91]{exercise/SConstruct}
+\lstinputlisting[firstline=110,firstnumber=110,lastline=110]{exercise/SConstruct}
 \normalsize
 
 

@@ -74,7 +74,7 @@ Result('ro','ro rr ss','Overlay')
 
 # ------------------------------------------------------------
 # acoustic modeling
-Flow(['da','wa'],['wava','vp','ro','ss','rr','AFDM.x'],
+Flow(['da1','wa1'],['wava','vp','ro','ss','rr','AFDM.x'],
          '''
          ./AFDM.x
          verb=y free=n snap=%(snap)s jsnap=%(jsnap)d
@@ -86,10 +86,10 @@ Flow(['da','wa'],['wava','vp','ro','ss','rr','AFDM.x'],
          wfl=${TARGETS[1]}
          ''' % par)
 
-Result('da','transp |'           + fdmod.dgrey('',par))
-Result('wa','window n3=1 f3=20|' + fdmod.wgrey('',par))
+Result('da1','transp |'           + fdmod.dgrey('',par))
+Result('wa1','window n3=1 f3=20|' + fdmod.wgrey('',par))
 
-Result('wamovie','wa',fdmod.wgrey('pclip=99',par))
+Result('wamovie1','wa1',fdmod.wgrey('pclip=99',par))
 
     
 End()

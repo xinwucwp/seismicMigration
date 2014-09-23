@@ -1,4 +1,4 @@
-1.7-svn	sfspike	hw6/rtm/exercise:	xinwu@xinwu@mines	Mon Sep 15 17:33:07 2014
+1.7-svn	sfspike	hw6/rtm/exercise:	xinwu@xinwu@mines	Sun Sep 21 12:23:08 2014
 
 	d2=0.001
 	o1=0
@@ -15,7 +15,7 @@
 	n1=601
 	in="stdin"
 
-1.7-svn	sfsmooth	hw6/rtm/exercise:	xinwu@xinwu@mines	Mon Sep 15 17:33:07 2014
+1.7-svn	sfsmooth	hw6/rtm/exercise:	xinwu@xinwu@mines	Sun Sep 21 12:23:08 2014
 
 	data_format="native_float"
 	esize=4

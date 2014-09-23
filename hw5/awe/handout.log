@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  15 SEP 2014 15:26
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  22 SEP 2014 20:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -462,29 +462,51 @@ Overfull \hbox (2.49998pt too wide) in paragraph at lines 41--41
 [][] 
  []
 
-<exercise/Fig/wa.pdf, id=7, 639.58951pt x 615.01767pt>
-File: exercise/Fig/wa.pdf Graphic file (type pdf)
+<exercise/Fig/wa1.pdf, id=7, 639.58951pt x 615.01767pt>
+File: exercise/Fig/wa1.pdf Graphic file (type pdf)
 
-<use exercise/Fig/wa.pdf>
-Package pdftex.def Info: exercise/Fig/wa.pdf used on input line 42.
+<use exercise/Fig/wa1.pdf>
+Package pdftex.def Info: exercise/Fig/wa1.pdf used on input line 42.
 (pdftex.def)             Requested size: 281.85585pt x 271.0309pt.
 
 Overfull \hbox (2.49998pt too wide) in paragraph at lines 42--42
 [][] 
  []
 
-<exercise/Fig/da.pdf, id=8, 856.3995pt x 446.62859pt>
-File: exercise/Fig/da.pdf Graphic file (type pdf)
+<exercise/Fig/da1.pdf, id=8, 856.3995pt x 446.62859pt>
+File: exercise/Fig/da1.pdf Graphic file (type pdf)
 
-<use exercise/Fig/da.pdf>
-Package pdftex.def Info: exercise/Fig/da.pdf used on input line 43.
+<use exercise/Fig/da1.pdf>
+Package pdftex.def Info: exercise/Fig/da1.pdf used on input line 43.
 (pdftex.def)             Requested size: 281.85585pt x 146.99261pt.
 
 Overfull \hbox (2.49998pt too wide) in paragraph at lines 43--43
 [][] 
  []
 
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 49.
+<exercise/Fig/wa0.pdf, id=9, 639.58951pt x 615.01767pt>
+File: exercise/Fig/wa0.pdf Graphic file (type pdf)
+
+<use exercise/Fig/wa0.pdf>
+Package pdftex.def Info: exercise/Fig/wa0.pdf used on input line 44.
+(pdftex.def)             Requested size: 281.85585pt x 271.0309pt.
+
+Overfull \hbox (2.49998pt too wide) in paragraph at lines 44--44
+[][] 
+ []
+
+<exercise/Fig/da0.pdf, id=10, 856.3995pt x 446.62859pt>
+File: exercise/Fig/da0.pdf Graphic file (type pdf)
+
+<use exercise/Fig/da0.pdf>
+Package pdftex.def Info: exercise/Fig/da0.pdf used on input line 45.
+(pdftex.def)             Requested size: 281.85585pt x 146.99261pt.
+
+Overfull \hbox (2.49998pt too wide) in paragraph at lines 45--45
+[][] 
+ []
+
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 51.
 (/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 ) [1
@@ -495,78 +517,99 @@ ready used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.58 
+l.60 
      pdfTeX warning (ext4): destination with the same identifier (name{figure.2
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.58 
+l.60 
       <./exercise/Fig/wava.pdf> <./exercise/Fig/vp.pdf>] [2pdfTeX warning (ext4
 ): destination with the same identifier (name{figure.3}) has been already used,
  duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.58 
+l.60 
      pdfTeX warning (ext4): destination with the same identifier (name{figure.4
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.58 
-      <./exercise/Fig/ro.pdf> <./exercise/Fig/wa.pdf>] [3pdfTeX warning (ext4):
- destination with the same identifier (name{figure.5}) has been already used, d
-uplicate ignored
+l.60 
+      <./exercise/Fig/ro.pdf> <./exercise/Fig/wa1.pdf>] [3pdfTeX warning (ext4)
+: destination with the same identifier (name{figure.5}) has been already used, 
+duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.81 \newpage
-              <./exercise/Fig/da.pdf>] (./exercise/AFDM.c
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 1.
+l.60 
+     pdfTeX warning (ext4): destination with the same identifier (name{figure.6
+}) has been already used, duplicate ignored
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/omsptm.fd
-File: omsptm.fd 
-)
-LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <5> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1.
-LaTeX Font Info:    Try loading font information for OML+ptm on input line 19.
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.60 
+     pdfTeX warning (ext4): destination with the same identifier (name{figure.7
+}) has been already used, duplicate ignored
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/omlptm.fd
-File: omlptm.fd 
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.60 
+      <./exercise/Fig/da1.pdf> <./exercise/Fig/wa0.pdf> <./exercise/Fig/da0.pdf
+>] [4]
+Package color Info: Redefining color red on input line 112.
+Package color Info: Redefining color green on input line 113.
+ (/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
-LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <5> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 19.
- [4] [5]
-[6])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 88.
- [7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 88.
+(/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+)
+(./exercise/AFDM.c [5]
+Overfull \hbox (21.65001pt too wide) in paragraph at lines 88--90
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[6] [7] [8] [9]) (./exercise/AFDM.c) (./exercise/AFDM.c) (./exercise/AFDM.c)
+Overfull \hbox (5.44984pt too wide) in paragraph at lines 325--129
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][] 
+ []
+
+(./exercise/AFDM.c [10])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 135.
+ [11]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 135.
  (./handout.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 88.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 88.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 135.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 135.
 Package rerunfilecheck Info: File `handout.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 88.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 135.
  ) 
 Here is how much of TeX's memory you used:
- 8504 strings out of 493315
- 122537 string characters out of 6137904
- 299420 words of memory out of 5000000
- 11420 multiletter control sequences out of 15000+600000
- 12235 words of font info for 32 fonts, out of 8000000 for 9000
+ 8929 strings out of 493315
+ 127189 string characters out of 6137904
+ 275327 words of memory out of 5000000
+ 11819 multiletter control sequences out of 15000+600000
+ 11888 words of font info for 34 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 34i,9n,32p,223b,1599s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,9n,49p,223b,1728s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/tex
-live/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texli
-ve/2013/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2013/
-texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2013/texmf-dist
-/fonts/type1/urw/times/utmr8a.pfb>
-Output written on handout.pdf (7 pages, 213475 bytes).
+exlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
+xlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texl
+ive/2013/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2013
+/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2013/texmf-dis
+t/fonts/type1/urw/times/utmr8a.pfb>
+Output written on handout.pdf (11 pages, 298571 bytes).
 PDF statistics:
- 573 PDF objects out of 1000 (max. 8388607)
- 544 compressed objects within 6 object streams
- 414 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 612 PDF objects out of 1000 (max. 8388607)
+ 575 compressed objects within 6 object streams
+ 430 named destinations out of 1000 (max. 500000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
