@@ -1,5 +1,7 @@
 # Ignore all files in the folder "slides"
 slides/*
+# Ignore all files below
+*.tar
 *.rsf
 *.vpl
 *.eps
