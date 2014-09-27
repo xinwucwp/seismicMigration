@@ -55,10 +55,18 @@ detail how your imaging procedures work.
   two images in this document. Are the images different from
   each-other? How? Why?
 %\sideplot{rb}{width=\textwidth}{The constant density \texttt{rb.rsf}.}
-\sideplot{imag0rb}{width=\textwidth}{Image migrated with the recorded data in
-Figure~\ref{fig:dr0} and the constant density \texttt{rb.rsf}.}
-\sideplot{imag1rb}{width=\textwidth}{Image migrated with the recorded data in
-Figure~\ref{fig:dr1} and the constant density \texttt{rb.rsf}.}
+\sideplot{imag0rbic0}{width=\textwidth}
+{\textcolor{blue}{data in Figure~\ref{fig:dr0}}, \textcolor{green}{constant density }, 
+and \textcolor{red}{ first I.C.}.}
+\sideplot{imag1rbic0}{width=\textwidth}
+{\textcolor{blue}{data in Figure~\ref{fig:dr1}}, \textcolor{green}{constant density }, 
+and \textcolor{red}{ first I.C.}.}
+\sideplot{imag0rbic1}{width=\textwidth}
+{\textcolor{blue}{data in Figure~\ref{fig:dr0}}, \textcolor{green}{constant density }, 
+and \textcolor{red}{ second I.C.}.}
+\sideplot{imag1rbic1}{width=\textwidth}
+{\textcolor{blue}{data in Figure~\ref{fig:dr1}}, \textcolor{green}{constant density }, 
+and \textcolor{red}{ second I.C.}.}
 
 \item Use your imaging procedure to generate images based on recorded
   data in Figures~\ref{fig:dr0} and \ref{fig:dr1}. For this exercise,
@@ -66,19 +74,58 @@ Figure~\ref{fig:dr1} and the constant density \texttt{rb.rsf}.}
   two images in this document. Are the images different from
   each-other? How? Why? How do your images compare with the ones from
   the preceding exercise?
-%\sideplot{ra}{width=\textwidth}{The variable density \texttt{ra.rsf}.}
-\sideplot{imag0ra}{width=\textwidth}{Image migrated with the recorded data in
-Figure~\ref{fig:dr0} and the variable density \texttt{ra.rsf}.}
-\sideplot{imag1ra}{width=\textwidth}{Image migrated with the recorded data in
-Figure~\ref{fig:dr1} and the variable density \texttt{ra.rsf}.}
-
+\sideplot{imag0raic0}{width=\textwidth}
+{\textcolor{blue}{data in Figure~\ref{fig:dr0}}, \textcolor{green}{variable density }, 
+and \textcolor{red}{first I.C.}.}
+\sideplot{imag1raic0}{width=\textwidth}
+{\textcolor{blue}{data in Figure~\ref{fig:dr1}}, \textcolor{green}{variable density }, 
+and \textcolor{red}{first I.C.}.}
+\sideplot{imag0raic1}{width=\textwidth}
+{\textcolor{blue}{data in Figure~\ref{fig:dr0}}, \textcolor{green}{variable density }, 
+and \textcolor{red}{second I.C.}.}
+\sideplot{imag1raic1}{width=\textwidth}
+{\textcolor{blue}{data in Figure~\ref{fig:dr1}}, \textcolor{green}{variable density }, 
+and \textcolor{red}{second I.C.}.}
 \end{enumerate}
+\section{}
+\section{}
+\section{}
+\section{}
+\section{}
+\section{}
+\section{Comments}
+\subsection{Codes}
+The block of codes with gray background in the attached \texttt{SConstruct} are
+designed to perform reverse-time migration.
+\subsection{Results}
+\textbf{1) using constant density}\\
+1a) Using two different implementations for the conventional image condition, I
+obtain the same migrated images as shown in Figures 5 and 7, Figures 6 and 8.\\
+1b) Using the recorded data shown in Figure 3:\\ 
+In this data, the direct arrival is much stronger than the reflected arrivals, 
+therefore, the interfaces in the migrated images (Figures 5 and 7) are much 
+weaker than the low-frequency feature (at $x=1.5$ km and $z=0.0$ km) due to the 
+strong direct arrivals.\\
+1c) Using the recorded data shown in Figure 4:\\ 
+In this data, we only have the reflected arrivals while the direct arrival is
+removed, therefore, the interfaces are strong and obvious in the migrated images
+(Figures 6 and 8) and we do not see the feature at at $x=1.5$ km and $z=0.0$ km. 
+In Figures 6 and 8, we observe smile-shape artifacts at the ends of the two 
+horizontal reflectors because of the truncation of the data. We also see some
+artifacts at the corners at $x=1$ km because these corners are refractors.\\
+\textbf{2) using variable density}\\
+2a) Using two different implementations for the conventional image condition, I
+obtain the same migrated images as shown in Figures 9 and 11, Figures 10 and 12.\\
+2b) Using the recorded data shown in Figure 3:\\ 
+I obtain almost the same migrated images (Figures 9 and 11) as the ones (Figures 5
+and 7) with constant density.\\
+2c) Using the recorded data shown in Figure 4:\\ 
+I obtain the same horizontal reflectors and nearby artifacts in the migrated
+images (Figures 10 and 12) as using the ones (Figures 6 and 8) with constant 
+density. However, I can also see the low-frequency features extended from the
+top to the horizontal reflectors because the consistence of reflected events
+between the source wavefield and data wavefield always exists.
 
-% ------------------------------------------------------------
-\section{Wrap-up}
-
-After you are satisfied that your document looks ok, print it from the
-PDF viewer and bring it to class.
 
 % ------------------------------------------------------------
 \newpage
@@ -98,9 +145,9 @@ PDF viewer and bring it to class.
         aboveskip=0pt,belowskip=0pt,
         identifierstyle=\color{green}}
 \lstinputlisting[firstline=1,lastline=90]{exercise/SConstruct}
-\lstinputlisting[backgroundcolor=\color{gray},firstline=91,lastline=109,
+\lstinputlisting[backgroundcolor=\color{gray},firstline=91,lastline=116,
 firstnumber=91]{exercise/SConstruct}
-\lstinputlisting[firstline=110,firstnumber=110,lastline=110]{exercise/SConstruct}
+\lstinputlisting[firstline=117,firstnumber=117,lastline=117]{exercise/SConstruct}
 \normalsize
 
 

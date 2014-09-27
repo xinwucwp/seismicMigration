@@ -96,15 +96,22 @@ tdats = ['tdat0','tdat1']
 twfls = ['twfl0','twfl1']
 rwfls = ['rwfl0','rwfl1']
 velo,sou,rec,custom='vo','rr','rr','jsnap=1 fsrf=n'
-dens,swfls,idats = ['ra','rb'],['ww','wo'],['dr0','dr1']
-xcor2dPar = 'xcor2d uu=${SOURCES[1]} axis=3 verb=y nbuf=100'
+ics,dens,swfls,idats = ['ic0','ic1'],['ra','rb'],['ww','wo'],['dr0','dr1']
+# two implementations of conventional (cross-correlation zero-lag) IC
+method1 = 'xcor2d uu=${SOURCES[1]} axis=3 verb=y nbuf=100'
+method2 = 'sfadd mode=m ${SOURCES[1]} | sfstack axis=3 ${SOURCES[1]}'
 for den in dens:
   for i in range(2):
     Flow(odats[i]+den,idats[i],'reverse which=2 opt=i verb=y')
     fdm.awefd(tdats[i]+den,twfls[i]+den,odats[i]+den,velo,den,sou,rec,custom,par)
     Flow(rwfls[i]+den,twfls[i]+den,'reverse which=4 opt=i verb=y')
-    # conventional (cross-correlation zero-lag) imaging condition
-    Flow(imags[i]+den,rwfls[i]+den+' '+swfls[i],xcor2dPar)
-    Result(imags[i]+den,'window j3=%(jsnap)d |'%par + fdm.wgrey('pclip=99.9',par))
+    output = imags[i]+den
+    inputs = [rwfls[i]+den,swfls[i]]
+    for ic in ics:
+      if ic=='ic0':
+        Flow(output+ic,inputs,method1)
+      if ic=='ic1':
+        Flow(output+ic,inputs,method2)
+      Result(output+ic,'window j3=%(jsnap)d |'%par + fdm.wgrey('pclip=99.9',par))
 # ------------------------------------------------------------
 End()
